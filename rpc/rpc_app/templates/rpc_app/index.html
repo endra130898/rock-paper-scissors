@@ -1,0 +1,41 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Scissors</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+</head>
+<body>
+	<div class="container">
+		<h1>Rock, Paper, Scissors</h1>
+		<form class="form cf" method="POST" action="{% url "rpc-app:index" %}">
+			{% csrf_token %}
+			<section class="plan cf">
+				<h2>Choose Your Choice:</h2>
+				<input type="radio" name="radio1" id="free" value="rock"><label class="free-label four col" for="free">Rock</label>
+				<input type="radio" name="radio1" id="basic" value="paper"><label class="basic-label four col" for="basic">Paper</label>
+				<input type="radio" name="radio1" id="premium" value="scissors"><label class="premium-label four col" for="premium">Scissors</label>
+			</section>
+			<input class="submit" type="submit" value="Submit">		
+		</form>
+		<div>
+			{% if hack_attempt %}
+			<h2>Hack attempt detected</h2>
+			{% else %}
+			<h2>Consecutive score: {{ wins }} wins</h2>
+			<h2>You must win 999,999,999 times</h2>
+			{% endif %}
+		</div>
+	</div>
+	<br>
+	<footer class="footer">
+		<div class="container">
+			<h3>Created by Endrawan Andika Wicaksana</h3>
+			<h3>Special thanks to https://codepen.io/RRoberts/pen/kXvVrR</h3>
+		</div>
+	</footer>
+</body>
+</html>
